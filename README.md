@@ -29,7 +29,7 @@ products and these products are listed for purchase and sales.
 4. Delivery address
 5. The order can be delivered or picked up
 
-Each user will have a list of orders received ** my sales ** and orders made ** ** my purchases **.
+Each user will have a list of orders received ` my sales ` and orders made ` my purchases `.
 1. The order must be accepted by the seller
 2. The buyer will be able to track their orders:
 3. Status: (Done, Accepted)
