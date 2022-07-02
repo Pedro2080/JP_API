@@ -1,36 +1,36 @@
 # Application to advertise product sales
 ## Objectives
 
-The objective is to develop an application for registration of.
-
+The objective is to develop an application for registration of
 products and these products are listed for purchase and sales.
 
 ## Functionalities:
 
 - Anyone can advertise products to be sold.
-- Anyone can place orders for the advertised products.
+- Anyone can place orders of the advertised products.
 
-### A Person has:
+### A User has:
 1. Name
 2. email
 3. Telephone
 4. Address
 
-### A product has:
+### A Product has:
 1. Name
 2. Details
 3. Price
 4. Availability (yes/no)
+5. Details
 
-### An order has:
+### An Order has:
 1. Product
-2. Person who is placing
-3. Amount
+2. User who places the order
+3. Quantity
 4. Delivery address
 5. The order can be delivered or picked up
 
 Each user will have a list of orders received ` my sales ` and orders made ` my purchases `.
-1. The order must be accepted by the seller
+1. The order must be accepted by the user
 2. The buyer will be able to track their orders:
 3. Status: (Done, Accepted)
 
