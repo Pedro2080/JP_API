@@ -38,14 +38,19 @@ Each user will have a list of orders received ` my sales ` and orders made ` my 
 #### 1. Locally
 1. Install Python 3.8
 ```terminal
-sudo apt install python3.9
+sudo apt install python3.8
 ```
 2. Install Pip
 ```terminal
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py
 ```
+3. Install the packages using pip according to the requirements.tx file
+```terminal
+pip install -U -r requirements.txt
+```
 
 ## Stack
 - [Fastpapi](https://fastapi.tiangolo.com/)
 - [Python 3.8](https://docs.python.org/3.8/)
+- [Sqlite](https://sqlitebrowser.org/dl/)

@@ -1,0 +1,17 @@
+fastapi
+
+uvicorn
+
+psycopg2-binary
+sqlalchemy
+
+passlib[bcrypt]
+
+pytest
+requests
+
+lark
+pytest-cov
+python-multipart
+
+fastapi_login
