@@ -2,7 +2,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey, DateTime
 
 from sqlalchemy.sql import func
-from backend.database.config import BaseModel
+from database.config import BaseModel
 
 
 class Product(BaseModel):
