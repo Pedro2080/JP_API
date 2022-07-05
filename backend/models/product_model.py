@@ -2,7 +2,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Boolean, Float, ForeignKey, DateTime
 
 from sqlalchemy.sql import func
-from ..database.config import BaseModel
+from backend.database.config import BaseModel
 
 
 class Product(BaseModel):
@@ -17,5 +17,5 @@ class Product(BaseModel):
     time_updated = Column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
-    user_id = Column(Integer, ForeignKey("users.id", name="fk_user"))
-    user = relationship("User", back_populates="products")
+    # user_id = Column(Integer, ForeignKey("users.id", name="fk_user"))
+    # user = relationship("User", back_populates="products")

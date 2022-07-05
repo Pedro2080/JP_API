@@ -1,19 +1,13 @@
 from typing import List, Union
 
-from sqlalchemy import delete
+from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
-from ..schemas.user_schema import UserCreate, UserDTO
-from ..models.user_model import User
+from schemas.user_schema import UserCreate, UserDTO
+from models.user_model import User
 
 
 def create_user(db: Session, user: UserCreate) -> User:
-    db_user = User(
-        first_name=user.first_name,
-        last_name=user.last_name,
-        email=user.email,
-        telefone=user.telefone,
-        password=user.password,
-    )
+    db_user = User(**user.__dict__)
     db.add(db_user)
     db.commit()
 
@@ -41,6 +35,15 @@ def check_if_user_exists(db: Session, user: Union[UserDTO, UserCreate]) -> User:
         .first()
     )
     return query
+
+
+def update_single_user(db: Session, user: User, user_modified: UserCreate) -> None:
+    values = {k: v for k, v in user_modified.__dict__.items() if v is not None}
+
+    query = update(User).where(User.id == user.id).values(**values)
+
+    db.execute(query)
+    db.commit()
 
 
 def delete_user(db: Session, user_id: int) -> None:
