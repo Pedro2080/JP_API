@@ -16,11 +16,13 @@ def create_user(db: Session, user: UserCreate) -> User:
 
 def get_all_users(db: Session) -> List[UserDTO]:
     users = db.query(User).all()
+
     return users
 
 
 def get_user_by_id(db: Session, user_id: int) -> User:
     query = db.query(User).filter(User.id == user_id).first()
+
     return query
 
 
@@ -34,6 +36,7 @@ def check_if_user_exists(db: Session, user: Union[UserDTO, UserCreate]) -> User:
         )
         .first()
     )
+
     return query
 
 

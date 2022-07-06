@@ -10,7 +10,7 @@ class ProductCreate(BaseModel):
     price: float
     availability: bool = False
     details: constr(max_length=120)
-    user_id: Optional[int]
+    user_id: int
 
     time_created: datetime = datetime.now()
     time_updated: datetime = datetime.now()

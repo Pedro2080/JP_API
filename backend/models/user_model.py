@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String,DateTime
 from sqlalchemy.sql import func
 from database.config import BaseModel
 
+
 class User(BaseModel):
     __tablename__ = "users"
 
@@ -18,7 +19,7 @@ class User(BaseModel):
     time_updated = Column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
-    # # Products that the user sells
-    # products = relationship("Product", back_populates="user",  uselist=True)
-    # # Order that the user places to buy
-    # my_orders = relationship("Order", back_populates="user",  uselist=True)
+    # Products that the user sells
+    products = relationship("Product", back_populates="user",  uselist=True)
+    # Order that the user places to buy
+    my_orders = relationship("Order", back_populates="user",  uselist=True)

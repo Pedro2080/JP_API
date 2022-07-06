@@ -17,5 +17,6 @@ class Product(BaseModel):
     time_updated = Column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
-    # user_id = Column(Integer, ForeignKey("users.id", name="fk_user"))
-    # user = relationship("User", back_populates="products")
+    user_id = Column(Integer, ForeignKey("users.id", name="fk_user"))
+
+    user = relationship("User", back_populates="products")

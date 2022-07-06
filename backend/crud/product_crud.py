@@ -12,6 +12,7 @@ def create_product(db: Session, product: ProductCreate) -> Product:
         price=product.price,
         availability=product.availability,
         details=product.details,
+        user_id=product.user_id,
     )
     db.add(db_product)
     db.commit()
