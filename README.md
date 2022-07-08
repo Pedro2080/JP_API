@@ -49,13 +49,13 @@ python get-pip.py
 ```terminal
 pip install -U -r requirements.txt
 ```
-
 ## Unit tests
 
 Unit tests are created with the use of Pytest library (
 [Link to documentation](https://docs.pytest.org/en/6.2.x/getting-started.html)
 ).
 All unit test are placed in *`tests`* file.
+
 To run all unit tests together:
 
 ```terminal
