@@ -2,8 +2,8 @@ from typing import List, Union
 
 from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
-from schemas.user_schema import UserCreate, UserDTO
-from models.user_model import User
+from ..schemas.user_schema import UserCreate, UserDTO
+from ..models.user_model import User
 
 
 def create_user(db: Session, user: UserCreate) -> User:

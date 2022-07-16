@@ -3,11 +3,11 @@ import pytest
 from fastapi.testclient import TestClient
 from fastapi.encoders import jsonable_encoder
 
-from database.config import init_db
-from routes.user_route import router as user_route
-from main import app
+from ..database.config import init_db
+from ..routes.user_route import router as user_route
+from ..main import app
 
-from schemas.user_schema import UserCreate
+from ..schemas.user_schema import UserCreate
 
 
 def pytest_sessionstart(session):

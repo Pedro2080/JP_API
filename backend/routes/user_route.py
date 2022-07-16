@@ -7,9 +7,9 @@ from fastapi import Depends, HTTPException
 from fastapi import Response, APIRouter, status
 from sqlalchemy.orm import Session
 
-from crud import user_crud
-from database.config import get_db
-from schemas.user_schema import UserCreate, UserDTO
+from ..crud import user_crud
+from ..database.config import get_db
+from ..schemas.user_schema import UserCreate, UserDTO
 
 
 router = APIRouter()

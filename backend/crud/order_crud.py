@@ -2,8 +2,8 @@ from typing import List
 
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from schemas.order_schema import OrderCreate, OrderDTO
-from models.order_model import Order
+from ..schemas.order_schema import OrderCreate, OrderDTO
+from ..models.order_model import Order
 
 
 def create_order(db: Session, order: OrderCreate) -> Order:

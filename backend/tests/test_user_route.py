@@ -4,7 +4,11 @@ from fastapi import status
 def test_create_user_route(client, test_user):
     response = client.post(url="/users", json=test_user)
 
+    print(f"Tnesss {response}")
+
     assert response.status_code == status.HTTP_201_CREATED
+
+    print(f"JJJSJS {response.json()}")
 
     created_user = response.json()
 
@@ -20,12 +24,16 @@ def test_create_user_conflict(client, test_user):
     response = client.post(url="/users", json=test_user)
     assert response.status_code == status.HTTP_409_CONFLICT
 
+    print(f"JJJSJS {response.json()}")
+
 
 def test_get_users_ok(client):
     response = client.get("/users")
     assert response.status_code == status.HTTP_200_OK
     assert isinstance(response.json(), list)
     assert len(response.json()) == 1
+
+    print(f"JJJSJS {response.json()}")
 
 
 def test_get_user_by_id_ok(client, user_id, test_user):
