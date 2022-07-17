@@ -4,10 +4,18 @@ from sqlalchemy import delete, update
 from sqlalchemy.orm import Session
 from schemas.user_schema import UserCreate, UserDTO
 from models.user_model import User
+from password_hashing import hashing_password
 
 
 def create_user(db: Session, user: UserCreate) -> User:
-    db_user = User(**user.__dict__)
+    db_user = User(
+        email=user.email,
+        first_name=user.first_name,
+        last_name=user.last_name,
+        telefone=user.telefone,
+        address=user.address,
+        password=hashing_password.Hasher.get_hash_password(user.password),
+    )
     db.add(db_user)
     db.commit()
 
