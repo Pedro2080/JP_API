@@ -16,7 +16,7 @@ class OrderCreate(BaseModel):
 
 
 class OrderDTO(BaseModel):
-    id: Optional[int] = None
+    id: Optional[int]
     quantity: int
     delivery_address: constr(max_length=120)
     comments: Optional[constr(max_length=120)] = "No comments"

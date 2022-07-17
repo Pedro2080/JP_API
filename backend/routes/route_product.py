@@ -1,6 +1,5 @@
 from typing import List
 
-
 from fastapi import Depends, HTTPException
 from fastapi import Response, APIRouter, status
 from sqlalchemy.orm import Session
@@ -8,7 +7,6 @@ from sqlalchemy.orm import Session
 from crud import product_crud
 from database.config import get_db
 from schemas.product_schema import ProductCreate, ProductDTO
-
 
 router = APIRouter()
 feature_flag = "PRODUCT_ROUTE"
@@ -41,11 +39,13 @@ async def get_products(db: Session = Depends(get_db)):
 
 
 @router.get("/products/{product_id}", response_model=ProductDTO, tags=["product"])
-async def get_product_by_id(response: Response, product_id: int, db: Session = Depends(get_db)):
+async def get_product_by_id(product_id: int, db: Session = Depends(get_db)):
     product = product_crud.get_product_by_id(db=db, product_id=product_id)
 
     if not product:
-        response.status_code = status.HTTP_404_NOT_FOUND
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Product not found"
+        )
     else:
 
         return product

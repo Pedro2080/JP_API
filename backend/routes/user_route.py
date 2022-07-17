@@ -39,11 +39,13 @@ async def get_users(db: Session = Depends(get_db)):
 
 
 @router.get("/users/{user_id}", response_model=UserDTO, tags=["user"])
-async def get_user(response: Response, user_id: int, db: Session = Depends(get_db)):
+async def get_user(user_id: int, db: Session = Depends(get_db)):
     user = user_crud.get_user_by_id(db=db, user_id=user_id)
 
     if not user:
-        response.status_code = status.HTTP_404_NOT_FOUND
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
+        )
     else:
         return user
 

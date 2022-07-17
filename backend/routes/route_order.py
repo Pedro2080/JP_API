@@ -1,13 +1,12 @@
 from typing import List
 
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 from fastapi import Response, APIRouter, status
 from sqlalchemy.orm import Session
 
 from crud import order_crud
 from database.config import get_db
 from schemas.order_schema import OrderCreate, OrderDTO
-
 
 router = APIRouter()
 feature_flag = "ORDER_ROUTE"
@@ -26,11 +25,13 @@ async def get_orders(db: Session = Depends(get_db)):
 
 
 @router.get("/orders/{order_id}", response_model=OrderDTO, tags=["order"])
-async def get_order_by_id(response: Response, order_id: int, db: Session = Depends(get_db)):
+async def get_order_by_id(order_id: int, db: Session = Depends(get_db)):
     order = order_crud.get_order_by_id(db=db, order_id=order_id)
 
     if not order:
-        response.status_code = status.HTTP_404_NOT_FOUND
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Order not found"
+        )
     else:
 
         return order
