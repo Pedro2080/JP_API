@@ -1,22 +1,18 @@
-from fastapi import FastAPI
-
 from typing import List, Optional
-
 
 from fastapi import Depends, HTTPException
 from fastapi import Response, APIRouter, status
 from sqlalchemy.orm import Session
 
-from ..crud import user_crud
-from ..database.config import get_db
-from ..schemas.user_schema import UserCreate, UserDTO
-
+from crud import user_crud
+from database.config import get_db
+from schemas.user_schema import UserCreate, UserDTO
 
 router = APIRouter()
 feature_flag = "USER_ROUTE"
 
 
-@router.post("/users")
+@router.post("/users", tags=["user"])
 async def create_user(
     response: Response, user: UserCreate, db: Session = Depends(get_db)
 ):
@@ -36,13 +32,13 @@ async def create_user(
     return new_user
 
 
-@router.get("/users",response_model=List[UserDTO])
+@router.get("/users",response_model=List[UserDTO], tags=["user"])
 async def get_users(db: Session = Depends(get_db)):
 
     return user_crud.get_all_users(db=db)
 
 
-@router.get("/users/{user_id}", response_model=UserDTO)
+@router.get("/users/{user_id}", response_model=UserDTO, tags=["user"])
 async def get_user(response: Response, user_id: int, db: Session = Depends(get_db)):
     user = user_crud.get_user_by_id(db=db, user_id=user_id)
 
@@ -52,7 +48,7 @@ async def get_user(response: Response, user_id: int, db: Session = Depends(get_d
         return user
 
 
-@router.put("/users/{user_id}")
+@router.put("/users/{user_id}", tags=["user"])
 async def update_user(
     user_id: int,
     user: Optional[UserCreate] = None,
@@ -73,7 +69,7 @@ async def update_user(
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
-@router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["user"])
 async def delete_user(user_id: int, db: Session = Depends(get_db)):
     user_crud.delete_user(db=db, user_id=user_id)
 

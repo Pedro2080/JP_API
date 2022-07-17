@@ -1,7 +1,7 @@
 from fastapi import status
 
 
-def test_create_user_route(client, test_user):
+def test_create_user_route(client, test_user, tags=["user"]):
     response = client.post(url="/users", json=test_user)
 
     print(f"Tnesss {response}")

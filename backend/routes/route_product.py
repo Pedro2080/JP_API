@@ -1,22 +1,20 @@
-from fastapi import FastAPI
-
-from typing import List, Optional
+from typing import List
 
 
 from fastapi import Depends, HTTPException
 from fastapi import Response, APIRouter, status
 from sqlalchemy.orm import Session
 
-from ..crud import product_crud
-from ..database.config import get_db
-from ..schemas.product_schema import ProductCreate, ProductDTO
+from crud import product_crud
+from database.config import get_db
+from schemas.product_schema import ProductCreate, ProductDTO
 
 
 router = APIRouter()
 feature_flag = "PRODUCT_ROUTE"
 
 
-@router.post("/products")
+@router.post("/products", tags=["product"])
 async def create_product(
     response: Response, product: ProductCreate, db: Session = Depends(get_db)
 ):
@@ -36,13 +34,13 @@ async def create_product(
     return new_product
 
 
-@router.get("/products", response_model=List[ProductDTO])
+@router.get("/products", response_model=List[ProductDTO], tags=["product"])
 async def get_products(db: Session = Depends(get_db)):
 
     return product_crud.get_all_products(db=db)
 
 
-@router.get("/products/{product_id}", response_model=ProductDTO)
+@router.get("/products/{product_id}", response_model=ProductDTO, tags=["product"])
 async def get_product_by_id(response: Response, product_id: int, db: Session = Depends(get_db)):
     product = product_crud.get_product_by_id(db=db, product_id=product_id)
 
@@ -53,7 +51,7 @@ async def get_product_by_id(response: Response, product_id: int, db: Session = D
         return product
 
 
-@router.delete("/products/{product_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/products/{product_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["product"])
 async def delete_product(product_id: int, db: Session = Depends(get_db)):
     product_crud.delete_product(db=db, product_id=product_id)
 

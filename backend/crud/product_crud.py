@@ -2,8 +2,8 @@ from typing import List
 
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from ..schemas.product_schema import ProductCreate, ProductDTO
-from ..models.product_model import Product
+from schemas.product_schema import ProductCreate, ProductDTO
+from models.product_model import Product
 
 
 def create_product(db: Session, product: ProductCreate) -> Product:
