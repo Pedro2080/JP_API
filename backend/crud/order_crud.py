@@ -2,7 +2,7 @@ from typing import List
 
 from sqlalchemy import delete
 from sqlalchemy.orm import Session
-from schemas.order_schema import OrderCreate, OrderDTO
+from schemas.order_schema import OrderCreate
 from models.order_model import Order
 
 
