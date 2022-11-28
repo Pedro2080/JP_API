@@ -20,7 +20,6 @@ products and these products are listed for purchase and sales.
 2. Details
 3. Price
 4. Availability (yes/no)
-5. Details
 
 ### An Order has:
 1. Product
