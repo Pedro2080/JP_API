@@ -9,15 +9,15 @@ from fastapi import FastAPI, APIRouter
 # from .database.config import engine, BaseModel
 #
 
-from .routes.user_route import router as user_router
-from .routes.user_route import feature_flag as user_flag
-from .routes.route_product import router as product_router
-from .routes.route_product import feature_flag as product_flag
+from routes.user_route import router as user_router
+from routes.user_route import feature_flag as user_flag
+from routes.route_product import router as product_router
+from routes.route_product import feature_flag as product_flag
 
-from .routes.route_order import router as order_router
-from .routes.route_order import feature_flag as order_flag
+from routes.route_order import router as order_router
+from routes.route_order import feature_flag as order_flag
 
-from .database.config import init_db
+from database.config import init_db
 
 
 def router_feature_toggle(application: FastAPI, router: APIRouter, flag: str) -> None:
